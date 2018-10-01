@@ -14,7 +14,7 @@ import sx.blah.discord.handle.impl.events.ReadyEvent;
 public class DiscordLog {
 
     private DiscordLog() {
-        IDiscordClient client = new ClientBuilder().withToken(System.getenv("DISCORD-TOKEN")).login();
+        IDiscordClient client = new ClientBuilder().withToken(System.getenv("DISCORD_TOKEN")).login();
         client.getDispatcher().registerListener((IListener<ReadyEvent>) event -> {
             event.getClient().getDispatcher().registerListener(new MessageListener());
             event.getClient().getDispatcher().registerListener(new UserListener());
