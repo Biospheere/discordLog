@@ -4,7 +4,7 @@
 
 Discord bot for activity logging.
 
-###Features
+### Features
 
 This bots creates an message with all required details when
 * a user got banned
