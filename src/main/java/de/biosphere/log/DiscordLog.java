@@ -2,10 +2,7 @@ package de.biosphere.log;
 
 import de.biosphere.log.listener.MessageListener;
 import de.biosphere.log.listener.UserListener;
-import sx.blah.discord.api.ClientBuilder;
-import sx.blah.discord.api.IDiscordClient;
-import sx.blah.discord.api.events.IListener;
-import sx.blah.discord.handle.impl.events.ReadyEvent;
+import net.dv8tion.jda.core.JDABuilder;
 
 /**
  * @author Biosphere
@@ -13,15 +10,14 @@ import sx.blah.discord.handle.impl.events.ReadyEvent;
  */
 public class DiscordLog {
 
-    private DiscordLog() {
-        IDiscordClient client = new ClientBuilder().withToken(System.getenv("DISCORD_TOKEN")).login();
-        client.getDispatcher().registerListener((IListener<ReadyEvent>) event -> {
-            event.getClient().getDispatcher().registerListener(new MessageListener());
-            event.getClient().getDispatcher().registerListener(new UserListener());
-        });
+    private DiscordLog() throws Exception{
+        new JDABuilder()
+                .setToken(System.getenv("DISCORD_TOKEN"))
+                .addEventListener(new MessageListener(), new UserListener())
+                .build();
     }
 
-    public static void main(String... args) {
+    public static void main(String... args) throws Exception{
         new DiscordLog();
     }
 
