@@ -2,14 +2,14 @@
 [![GitHub contributors](https://img.shields.io/github/contributors/biospheere/discordLog.svg)](https://github.com/Biospheere/discordLog/graphs/contributors/)
 # discordLog
 
-Discord bot for activity logging.
+Discord bot for message logging.
 
-### Features
+## Built with 
 
-This bots creates an message with all required details when
-* a user got banned
-* a users nickname changed
-* a message was written 
-* a message got edit
+- [JDA](https://github.com/DV8FromTheWorld/JDA) - Java wrapper for the popular chat & VOIP service  [@discordapp](https://github.com/discordapp)
+- [Maven](https://maven.apache.org/) 
 
-These messages get logged into a channel with the name "logger".
+## [License](https://github.com/Biospheere/discordLog/blob/master/LICENSE)
+
+MIT © [Niklas](https://github.com/Biospheere/)
+ 
