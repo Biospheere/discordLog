@@ -46,7 +46,7 @@ public class MessageListener extends ListenerAdapter {
         embedBuilder.setFooter("@" + message.getAuthor().getName() + "#" + message.getAuthor().getDiscriminator(), message.getAuthor().getAvatarUrl());
         embedBuilder.setDescription(message.getContentRaw() + "\n");
 
-        event.getGuild().getTextChannelsByName("logger", true).forEach(channel -> channel.sendMessage(embedBuilder.build()).queue());
+        event.getGuild().getTextChannelsByName("msg-log", true).forEach(channel -> channel.sendMessage(embedBuilder.build()).queue());
     }
 
     @Override
@@ -64,7 +64,7 @@ public class MessageListener extends ListenerAdapter {
         embedBuilder.setFooter("@" + event.getAuthor().getName() + "#" + event.getAuthor().getDiscriminator(), event.getAuthor().getAvatarUrl());
         embedBuilder.setDescription(message.getContentRaw() + "\n—\n" + event.getMessage().getContentRaw());
 
-        event.getGuild().getTextChannelsByName("logger", true).forEach(channel -> channel.sendMessage(embedBuilder.build()).queue());
+        event.getGuild().getTextChannelsByName("msg-log", true).forEach(channel -> channel.sendMessage(embedBuilder.build()).queue());
     }
 
 
