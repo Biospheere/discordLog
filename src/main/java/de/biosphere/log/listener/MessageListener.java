@@ -1,5 +1,6 @@
 package de.biosphere.log.listener;
 
+import de.biosphere.log.DiscordUtils;
 import net.dv8tion.jda.core.EmbedBuilder;
 import net.dv8tion.jda.core.entities.Message;
 import net.dv8tion.jda.core.events.message.guild.GuildMessageDeleteEvent;
@@ -8,7 +9,6 @@ import net.dv8tion.jda.core.events.message.guild.GuildMessageUpdateEvent;
 import net.dv8tion.jda.core.hooks.ListenerAdapter;
 import net.jodah.expiringmap.ExpiringMap;
 
-import java.awt.*;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -40,8 +40,7 @@ public class MessageListener extends ListenerAdapter {
             return;
         }
         final Message message = messageCache.get(event.getMessageId());
-        final EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setColor(Color.RED);
+        final EmbedBuilder embedBuilder = DiscordUtils.getLogEmbed();
         embedBuilder.setTitle("Nachricht gelöscht  in #" + event.getChannel().getName());
         embedBuilder.setFooter("@" + message.getAuthor().getName() + "#" + message.getAuthor().getDiscriminator(), message.getAuthor().getAvatarUrl());
         embedBuilder.setDescription(message.getContentRaw() + "\n");
@@ -58,8 +57,7 @@ public class MessageListener extends ListenerAdapter {
             return;
         }
         final Message message = messageCache.get(event.getMessageId());
-        final EmbedBuilder embedBuilder = new EmbedBuilder();
-        embedBuilder.setColor(Color.RED);
+        final EmbedBuilder embedBuilder = DiscordUtils.getLogEmbed();
         embedBuilder.setTitle("Nachricht editiert in #" + event.getChannel().getName());
         embedBuilder.setFooter("@" + event.getAuthor().getName() + "#" + event.getAuthor().getDiscriminator(), event.getAuthor().getAvatarUrl());
         embedBuilder.setDescription(message.getContentRaw() + "\n—\n" + event.getMessage().getContentRaw());
