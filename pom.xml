@@ -22,7 +22,7 @@
         <dependency>
             <groupId>net.dv8tion</groupId>
             <artifactId>JDA</artifactId>
-            <version>3.8.3_460</version>
+            <version>4.0.0_50</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/net.jodah/expiringmap -->
         <dependency>

@@ -1,11 +1,11 @@
 package de.biosphere.log.listener;
 
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.entities.Message;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageDeleteEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageReceivedEvent;
-import net.dv8tion.jda.core.events.message.guild.GuildMessageUpdateEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageDeleteEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.guild.GuildMessageUpdateEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.jodah.expiringmap.ExpiringMap;
 
 import java.awt.*;
@@ -20,7 +20,7 @@ public class MessageListener extends ListenerAdapter {
 
     private final Map<String, Message> messageCache;
 
-    public MessageListener(){
+    public MessageListener() {
         final ExpiringMap.Builder<Object, Object> mapBuilder = ExpiringMap.builder();
         mapBuilder.maxSize(1000).expiration(5, TimeUnit.MINUTES).build();
         messageCache = mapBuilder.build();
@@ -28,17 +28,13 @@ public class MessageListener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageReceived(GuildMessageReceivedEvent event) {
-        if(event.getAuthor().isBot()){
-            return;
-        }
+        if (event.getAuthor().isBot()) return;
         messageCache.put(event.getMessageId(), event.getMessage());
     }
 
     @Override
     public void onGuildMessageDelete(GuildMessageDeleteEvent event) {
-        if(!messageCache.containsKey(event.getMessageId())){
-            return;
-        }
+        if (! messageCache.containsKey(event.getMessageId())) return;
         final Message message = messageCache.get(event.getMessageId());
         final EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.RED);
@@ -51,12 +47,9 @@ public class MessageListener extends ListenerAdapter {
 
     @Override
     public void onGuildMessageUpdate(GuildMessageUpdateEvent event) {
-        if(event.getAuthor().isBot()){
-            return;
-        }
-        if(!messageCache.containsKey(event.getMessageId())){
-            return;
-        }
+        if (event.getAuthor().isBot()) return;
+
+        if (! messageCache.containsKey(event.getMessageId())) return;
         final Message message = messageCache.get(event.getMessageId());
         final EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.RED);
