@@ -1,8 +1,8 @@
 package de.biosphere.log.listener;
 
-import net.dv8tion.jda.core.EmbedBuilder;
-import net.dv8tion.jda.core.events.guild.GuildBanEvent;
-import net.dv8tion.jda.core.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.EmbedBuilder;
+import net.dv8tion.jda.api.events.guild.GuildBanEvent;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 import java.awt.*;
 
@@ -14,9 +14,8 @@ public class UserListener extends ListenerAdapter {
 
     @Override
     public void onGuildBan(GuildBanEvent event) {
-        if(event.getUser() == null){
-            return;
-        }
+        if (event.getUser() == null) return;
+
         final EmbedBuilder embedBuilder = new EmbedBuilder();
         embedBuilder.setColor(Color.RED);
         embedBuilder.setDescription(event.getUser().getName() + "#" + event.getUser().getDiscriminator() + " wurde gebannt");

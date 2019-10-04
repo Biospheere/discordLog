@@ -6,7 +6,7 @@ Discord bot for message logging.
 
 ## Built with 
 
-- [JDA](https://github.com/DV8FromTheWorld/JDA) - Java wrapper for the popular chat & VOIP service  [@discordapp](https://github.com/discordapp)
+- [JDA](https://github.com/DV8FromTheWorld/JDA) - Java wrapper for the popular chat & VoIP service  [@discordapp](https://github.com/discordapp)
 - [Maven](https://maven.apache.org/) 
 
 ## [License](https://github.com/Biospheere/discordLog/blob/master/LICENSE)
